@@ -21,9 +21,6 @@ void PredictionSystem::Start(CUserCmd *userCMD, C_BasePlayer* player)
 	*reinterpret_cast<int*>(uintptr_t(player) + 0x31F0) = userCMD->buttons & buttonsChanged;  //m_afButtonPressed ~ The changed ones still down are "pressed"
 	*reinterpret_cast<int*>(uintptr_t(player) + 0x31F4) = buttonsChanged & ~userCMD->buttons; //m_afButtonReleased ~ The ones not down are "released"
 	
-	if (m_pcmd->m_impulse)
-		*reinterpret_cast<uint32_t*>(uint32_t(g_ctx.local()) + m_nImpulse) = m_pcmd->m_impulse;
-
 	g_GameMovement->StartTrackPredictionErrors(player);
 
 	memset(&moveData, 0, sizeof(CMoveData));
